@@ -1,0 +1,147 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+:root{
+    --size: 100px;
+}
+
+body{
+    position: relative;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    align-content: space-evenly;
+}
+
+h1{
+   align-self:center
+}
+
+.game-container-grid{
+    display: grid;
+    align-content:center;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    width: var(calc(--size * 3));
+    height: var(calc(--size * 3));
+}
+
+[class*='box']{
+    height: var(--size);
+    width: var(--size);
+    border: 1.5px black solid;
+    position: relative;
+}
+
+.box-1, .box-4, .box-7{
+    border-left: none;
+}
+
+.box-3, .box-6, .box-9{
+    border-right: none;
+}
+.box-1, .box-2, .box-3{
+    border-top: none;
+}
+.box-7, .box-8, .box-9{
+    border-bottom: none;
+} 
+
+.x::before{
+    content: '';
+    position: absolute;
+    height: calc(var(--size) * .9);
+    width: calc(var(--size) * .15);
+    background-color: black;
+    transform: rotate(-45deg);
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 5px);;
+    right: 0;
+}
+.x::after{
+    content: '';
+    position: absolute;
+    height: calc(var(--size) * .9);
+    width: calc(var(--size) * .15);
+    background-color: black;
+    transform: rotate(45deg);
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 5px);
+    right: 0;
+}
+
+.circle::before, .circle::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.circle::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 45px);
+    right: 0;
+    height: calc(var(--size) * .9);
+    width: calc(var(--size) * .9);
+    background-color: white;
+    border-radius: 50%;
+    border: 15px solid black;
+}
+
+.x:not(.x):not(.circle):hover::after, .x:not(.x):not(.circle):hover::before {
+background-color: rgb(182, 170, 170);
+}
+.circle:not(.x):not(.circle):hover::before {
+border: rgb(182, 170, 170) solid 16px;
+}
+
+.selected{
+    cursor: not-allowed;
+}
+
+.message-content {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0, .75);
+    flex-direction: column;
+}
+
+.text-message{
+    font-size: 4.5rem;
+    transform: scale(1.1);
+    transition:all 1000ms ease-in;
+}
+
+.show {
+    display: flex;
+}
+
+.restartButton{
+    outline: none;
+    border: none;
+    background-color: rgb(255, 255, 255, 0);
+    padding: 1rem 1.5rem;
+    font-size: 1.75rem;
+    color: white;
+    cursor: pointer;
+}
